@@ -2,10 +2,7 @@ package ru.javawebinar.topjava.model;
 
 import java.time.LocalDateTime;
 
-/**
- * GKislin
- * 11.01.2015.
- */
+
 public class UserMeal {
     private final LocalDateTime dateTime;
 

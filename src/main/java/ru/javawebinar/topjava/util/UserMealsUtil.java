@@ -9,10 +9,7 @@ import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * GKislin
- * 31.05.2015.
- */
+
 public class UserMealsUtil {
     public static void main(String[] args) {
         List<UserMeal> mealList = Arrays.asList(
