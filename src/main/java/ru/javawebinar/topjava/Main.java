@@ -1,14 +1,12 @@
 package ru.javawebinar.topjava;
 
-/**
- * User: gkislin
- * Date: 05.08.2015
- *
- * @link http://caloriesmng.herokuapp.com/
- * @link https://github.com/JavaOPs/topjava
- */
+
 public class Main {
     public static void main(String[] args) {
-        System.out.format("Hello Topjava Enterprise!");
+        String HOST1 = "https://jsonplaceholder.typicode.com/posts/1";
+        int n = 5;
+        String temp = HOST1.substring(0,HOST1.lastIndexOf("/")+1);
+        HOST1 = temp + n;
+        System.out.format(HOST1);
     }
 }
