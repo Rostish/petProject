@@ -4,11 +4,17 @@ import java.time.LocalDateTime;
 
 
 public class UserMealWithExceed {
+
     private final LocalDateTime dateTime;
 
     private final String description;
 
     private final int calories;
+
+    @Override
+    public String toString() {
+        return dateTime.toString()+"/"+description+"/"+calories+"/"+exceed;
+    }
 
     private final boolean exceed;
 
