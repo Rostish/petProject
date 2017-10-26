@@ -3,6 +3,7 @@ package ru.javawebinar.topjava.util;
 import ru.javawebinar.topjava.model.UserMeal;
 import ru.javawebinar.topjava.model.UserMealWithExceed;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
@@ -10,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -57,22 +59,15 @@ public class UserMealsUtil {
     public static List<UserMealWithExceed> getFilteredWithExceeded(List<UserMeal> mealList, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
 
         List<UserMealWithExceed> result;
-        int sumForDay = mealList.get(0).getCalories();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        boolean[] isExceed = new boolean[32];
-
-        for (int i = 0; i < mealList.size() - 1; i++) {
-            if (mealList.get(i).getDateTime().format(formatter).equals(mealList.get(i + 1).getDateTime().format(formatter))) {
-                sumForDay = sumForDay + mealList.get(i + 1).getCalories();
-            } else sumForDay = mealList.get(i + 1).getCalories();
-            if (sumForDay > caloriesPerDay) {
-                isExceed[mealList.get(i).getDateTime().getDayOfMonth() - 1] = true;
-            }
-        }
+        Map<LocalDate, Integer> caloriesSumByDate = mealList.stream()
+                .collect(
+                        Collectors.groupingBy(aMealList -> aMealList.getDateTime().toLocalDate(),
+                                Collectors.summingInt(UserMeal::getCalories))
+                );
 
         result = mealList.stream()
                 .filter(aMealList -> (aMealList.getDateTime().toLocalTime().isBefore(endTime)) && (aMealList.getDateTime().toLocalTime().isAfter(startTime)))
-                .map(aMealList -> new UserMealWithExceed(aMealList.getDateTime(), aMealList.getDescription(), aMealList.getCalories(), isExceed[aMealList.getDateTime().getDayOfMonth()]))
+                .map(aMealList -> new UserMealWithExceed(aMealList.getDateTime(), aMealList.getDescription(), aMealList.getCalories(), caloriesSumByDate.get(aMealList.getDateTime().toLocalDate()) > caloriesPerDay))
                 .collect(Collectors.toList());
 
         for (int i = 0; i < result.size(); i++) {
