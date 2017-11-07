@@ -12,10 +12,13 @@ public class Meal {
 
     private final int calories;
 
-    public Meal(LocalDateTime dateTime, String description, int calories) {
+    private final int userid;
+
+    public Meal(LocalDateTime dateTime, String description, int calories, int userid) {
         this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;
+        this.userid = userid;
     }
 
     public LocalDateTime getDateTime() {
@@ -36,5 +39,9 @@ public class Meal {
 
     public LocalTime getTime() {
         return dateTime.toLocalTime();
+    }
+
+    public int getUserid() {
+        return userid;
     }
 }
