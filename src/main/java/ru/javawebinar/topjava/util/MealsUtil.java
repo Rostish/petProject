@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toList;
 public class MealsUtil {
 
     private static final Map<Integer, Meal> DB = new HashMap<>();
-
+    private static List<Meal> meals = new ArrayList<>();
     static {
         initDB();
     }
@@ -25,7 +25,7 @@ public class MealsUtil {
     }
 
     public static void initDB() {
-        List<Meal> meals = Arrays.asList(
+        meals = Arrays.asList(
                 new Meal(LocalDateTime.of(2015, Month.MAY, 30, 10, 0), "Завтрак", 500,1),
                 new Meal(LocalDateTime.of(2015, Month.MAY, 30, 13, 0), "Обед", 1000,2),
                 new Meal(LocalDateTime.of(2015, Month.MAY, 30, 20, 0), "Ужин", 500,3),
