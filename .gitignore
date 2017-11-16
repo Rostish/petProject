@@ -4,3 +4,5 @@ target
 *.iml
 log
 *.patch
+README.md
+.DS_Store
