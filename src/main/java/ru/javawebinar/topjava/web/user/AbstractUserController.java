@@ -29,7 +29,6 @@ public abstract class AbstractUserController {
 
     public User create(User user) {
         log.info("create {}", user);
-        checkNew(user);
         return service.create(user);
     }
 
