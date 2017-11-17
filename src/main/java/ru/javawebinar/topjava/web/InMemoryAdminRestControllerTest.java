@@ -8,7 +8,10 @@ import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.mock.InMemoryUserRepositoryImpl;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 import ru.javawebinar.topjava.web.user.AdminRestController;
+<<<<<<< HEAD
 //import sun.jvm.hotspot.utilities.Assert;
+=======
+>>>>>>> origin/master
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -42,8 +45,13 @@ public class InMemoryAdminRestControllerTest {
     public void testDelete() throws Exception {
         controller.delete(UserTestData.USER_ID);
         Collection<User> users = controller.getAll();
+<<<<<<< HEAD
         //Assert.assertEquals(users.size(), 1);
         //Assert.assertEquals(users.iterator().next(), ADMIN);
+=======
+        Assert.assertEquals(users.size(), 1);
+        Assert.assertEquals(users.iterator().next(), ADMIN);
+>>>>>>> origin/master
     }
 
     @Test(expected = NotFoundException.class)
