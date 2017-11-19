@@ -8,4 +8,4 @@ README.md
 .DS_Store
 postgres.properties
 TOPJAVA_ROOT_IS_UNDEFINED
-
+/src/main/resources/db/postgres.properties
