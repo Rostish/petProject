@@ -16,6 +16,8 @@ import java.util.List;
 
 public class SpringMain {
     public static void main(String[] args) {
+
+
         // java 7 Automatic resource management
         try (ConfigurableApplicationContext appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml")) {
             System.out.println("Bean definition names: " + Arrays.toString(appCtx.getBeanDefinitionNames()));
@@ -30,5 +32,7 @@ public class SpringMain {
                             LocalDate.of(2015, Month.MAY, 31), LocalTime.of(11, 0));
             filteredMealsWithExceeded.forEach(System.out::println);
         }
+
+
     }
 }
