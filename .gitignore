@@ -6,6 +6,6 @@ log
 *.patch
 README.md
 .DS_Store
-postgres.properties
 .gitignore
-TOPJAVA_ROOT_IS_UNDEFINED/
+TOPJAVA_ROOT_IS_UNDEFINED
+
