@@ -32,7 +32,7 @@ public class JdbcMealRepositoryImpl implements MealRepository {
     public JdbcMealRepositoryImpl(DataSource dataSource, JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.insertMeal = new SimpleJdbcInsert(dataSource)
                 .withTableName("meals")
-                .usingGeneratedKeyColumns("meal_id");
+                .usingGeneratedKeyColumns("id");
 
         this.jdbcTemplate = jdbcTemplate;
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
@@ -42,18 +42,19 @@ public class JdbcMealRepositoryImpl implements MealRepository {
     public Meal save(Meal meal, int userId) {
 
         MapSqlParameterSource map = new MapSqlParameterSource()
-                .addValue("id", meal.getId())
                 .addValue("description", meal.getDescription())
-                .addValue("datetime", Timestamp.valueOf(meal.getDateTime()))
+                .addValue("date_time", Timestamp.valueOf(meal.getDateTime()))
                 .addValue("calories", meal.getCalories())
-                .addValue("user_id", userId);
+                .addValue("user_id", userId)
+                .addValue("id",meal.getId());
+
 
         if (meal.isNew()) {
             Number newKey = insertMeal.executeAndReturnKey(map);
             meal.setId(newKey.intValue());
         } else {
             namedParameterJdbcTemplate.update(
-                    "UPDATE meals SET description=:description, date_time=:datetime, calories=:calories, id=:id WHERE user_id=:user_id", map);
+                    "UPDATE meals SET description=:description, date_time=:date_time, calories=:calories WHERE id=:id and user_id=:user_id",map);
         }
         return meal;
     }
@@ -72,7 +73,7 @@ public class JdbcMealRepositoryImpl implements MealRepository {
 
     @Override
     public List<Meal> getAll(int userId) {
-        return jdbcTemplate.query("SELECT * FROM meals WHERE user_id=?", ROW_MAPPER, userId);
+        return jdbcTemplate.query("SELECT * FROM meals WHERE user_id=? ORDER BY date_time", ROW_MAPPER, userId);
     }
 
     @Override
