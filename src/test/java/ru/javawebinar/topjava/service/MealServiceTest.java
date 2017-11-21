@@ -60,7 +60,7 @@ public class MealServiceTest {
     @Test
     public void getAll() throws Exception {
         List<Meal> all = mealService.getAll(USER_ID);
-        assertThat(all).isEqualTo(Arrays.asList(MEALS));
+        assertThat(all).isEqualTo(MEALS);
     }
     @Test
     public void update() throws Exception {
