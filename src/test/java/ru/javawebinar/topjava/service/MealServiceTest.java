@@ -46,7 +46,11 @@ public class MealServiceTest {
     @Test
     public void delete() throws Exception {
         mealService.delete(MEAL_ID,USER_ID);
-        //assertMatch(mealService.getAll(), );
+        final List<Meal> MEALS = Arrays.asList(
+                new Meal(100004,LocalDateTime.of(2015, Month.MAY, 31, 12, 0), "Dinner", 500),
+                new Meal(100003,LocalDateTime.of(2015, Month.MAY, 31, 11, 0), "Dinner", 510)
+        );
+        assertThat(mealService.getAll(USER_ID)).isEqualTo(MEALS);
     }
 
     @Test
