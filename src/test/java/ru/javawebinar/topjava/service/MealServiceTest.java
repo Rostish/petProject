@@ -64,14 +64,18 @@ public class MealServiceTest {
     }
     @Test
     public void update() throws Exception {
+        Meal updated = new Meal(MEAL);
+        updated.setCalories(1000);
+        updated.setDescription("Dinner");
+        mealService.update(updated,100000);
+        assertMatch(mealService.get(100002, USER_ID), updated);
     }
 
     @Test
     public void create() throws Exception {
-        Meal newMeal = new Meal(LocalDateTime.of(2015, Month.MAY, 30, 10, 0), "Завтрак", 500);
+        Meal newMeal = new Meal(100008,LocalDateTime.of(2015, Month.MAY, 30, 10, 0), "Завтрак", 500);
         Meal createMeal = mealService.create(newMeal,100000);
-        newMeal.setId(MEAL_ID);
-        assertMatch((Iterable<Meal>) mealService.get(newMeal.getId(),100000));
+        assertThat(newMeal).isEqualTo(createMeal);
     }
 
 }
