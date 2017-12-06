@@ -2,6 +2,7 @@ package ru.javawebinar.topjava.repository.mock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
 import ru.javawebinar.topjava.model.Meal;
@@ -18,6 +19,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Repository
+@Profile("inMemory")
 public class InMemoryMealRepositoryImpl implements MealRepository {
     private static final Logger log = LoggerFactory.getLogger(InMemoryUserRepositoryImpl.class);
 
