@@ -30,4 +30,8 @@ public interface CrudUserRepository extends JpaRepository<User, Integer> {
     List<User> findAll(Sort sort);
 
     User getByEmail(String email);
+
+    default User getWithMeals(int id) {
+       throw new UnsupportedOperationException();
+    }
 }

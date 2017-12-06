@@ -39,4 +39,9 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     public List<User> getAll() {
         return crudRepository.findAll(SORT_NAME_EMAIL);
     }
+
+
+    public User getWithMeals(int id) {
+        return crudRepository.findById(id).orElse(null);
+    }
 }
