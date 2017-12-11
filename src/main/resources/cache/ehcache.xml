@@ -2,24 +2,24 @@
         xmlns='http://www.ehcache.org/v3'
         xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.0.xsd">
 
-    <!--http://www.ehcache.org/documentation/3.4/xml.html-->
-    <!--http://www.ehcache.org/documentation/3.1/107.html#supplement-jsr-107-configurations-->
+    <!--&lt;!&ndash;http://www.ehcache.org/documentation/3.4/xml.html&ndash;&gt;-->
+    <!--&lt;!&ndash;http://www.ehcache.org/documentation/3.1/107.html#supplement-jsr-107-configurations&ndash;&gt;-->
 
-    <!--<persistence directory="${user.home}/cache-data"/>-->
+    <!--&lt;!&ndash;<persistence directory="${user.home}/cache-data"/>&ndash;&gt;-->
 
-    <cache-template name="expiryCache">
-        <expiry>
-            <ttl unit="minutes">5</ttl>
-        </expiry>
-        <heap unit="entries">5000</heap>
-    </cache-template>
+    <!--<cache-template name="expiryCache">-->
+        <!--<expiry>-->
+            <!--<ttl unit="minutes">5</ttl>-->
+        <!--</expiry>-->
+        <!--<heap unit="entries">5000</heap>-->
+    <!--</cache-template>-->
 
-    <cache-template name="nonExpiryCache">
-        <expiry>
-            <none/>
-        </expiry>
-        <heap>5000</heap>
-    </cache-template>
+    <!--<cache-template name="nonExpiryCache">-->
+        <!--<expiry>-->
+            <!--<none/>-->
+        <!--</expiry>-->
+        <!--<heap>5000</heap>-->
+    <!--</cache-template>-->
 
-    <cache alias="users" uses-template="nonExpiryCache"/>
+    <!--<cache alias="users" uses-template="nonExpiryCache"/>-->
 </config>
