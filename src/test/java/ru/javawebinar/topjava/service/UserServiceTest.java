@@ -18,6 +18,7 @@ import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import static ru.javawebinar.topjava.UserTestData.*;
@@ -47,10 +48,10 @@ public class UserServiceTest {
     public void setUp() throws Exception {
         cacheManager.getCache("users").clear();
     }
-        
+
     @Test
     public void create() throws Exception {
-        User newUser = new User(null, "New", "new@gmail.com", "newPass", 1555, false, Collections.singleton(Role.ROLE_USER));
+        User newUser = new User(null, "New", "new@gmail.com", "newPass", 1555, false, new Date(), Collections.singleton(Role.ROLE_USER));
         User created = service.create(newUser);
         newUser.setId(created.getId());
         assertMatch(service.getAll(), ADMIN, newUser, USER);
