@@ -74,8 +74,8 @@ public class RootController {
 
     @GetMapping("/meals/create")
     public String create(HttpServletRequest request) {
-        final Meal meal =
-                new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "", 1000);
+        Meal meal =
+                new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "ararar", 1000);
         request.setAttribute("meal", meal);
         return "mealForm";
     }
@@ -83,12 +83,14 @@ public class RootController {
     @PostMapping("/meals/change")
     public String change(HttpServletRequest request) {
         int userId = AuthorizedUser.id();
-        int id = Integer.parseInt(request.getParameter("id"));
-        Meal meal = new Meal(id,LocalDateTime.parse(request.getParameter("dateTime"))
-                , request.getParameter("description"), Integer.parseInt(request.getParameter("calories")));
         if (request.getParameter("id").isEmpty()) {
+            Meal meal = new Meal(LocalDateTime.parse(request.getParameter("dateTime"))
+                    , request.getParameter("description"), Integer.parseInt(request.getParameter("calories")));
             mService.create(meal, userId);
         } else {
+            int id = Integer.parseInt(request.getParameter("id"));
+            Meal meal = new Meal(id,LocalDateTime.parse(request.getParameter("dateTime"))
+                    , request.getParameter("description"), Integer.parseInt(request.getParameter("calories")));
             mService.update(meal, userId);
         }
         return "redirect:/meals";
