@@ -9,11 +9,17 @@ import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.service.MealService;
 import ru.javawebinar.topjava.service.UserService;
 import ru.javawebinar.topjava.util.MealsUtil;
+import ru.javawebinar.topjava.web.meal.MealRestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+
+import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalDate;
+import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalTime;
 
 @Controller
 public class RootController {
@@ -22,6 +28,9 @@ public class RootController {
 
     @Autowired
     private MealService mService;
+
+    @Autowired
+    private MealRestController mealController;
 
     @GetMapping("/")
     public String root() {
@@ -83,6 +92,16 @@ public class RootController {
             mService.update(meal, userId);
         }
         return "redirect:/meals";
+    }
+
+    @PostMapping("/meals/filter")
+    public String filter(HttpServletRequest request) {
+        LocalDate startDate = parseLocalDate(request.getParameter("startDate"));
+        LocalDate endDate = parseLocalDate(request.getParameter("endDate"));
+        LocalTime startTime = parseLocalTime(request.getParameter("startTime"));
+        LocalTime endTime = parseLocalTime(request.getParameter("endTime"));
+        request.setAttribute("meals", mealController.getBetween(startDate, startTime, endDate, endTime));
+        return "meals";
     }
 
 
