@@ -4,14 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--
-            <bean class="ru.javawebinar.topjava.repository.mock.MockUserRepositoryImpl" id="mockUserRepository"/>
-
-            <bean class="ru.javawebinar.topjava.service.UserServiceImpl">
-                <constructor-arg name="repository" ref="mockUserRepository"/>
-            </bean>
-    -->
     <import resource="spring-tools.xml"/>
+    <import resource="spring-security.xml"/>
 
     <!-- Not necessary, already included with component-scan -->
     <!--<context:annotation-config/>-->
