@@ -1,14 +1,14 @@
-var ajaxUrl = "ajax/admin/meals/";
+var ajaxUrl = "ajax/meals/";
 var datatableApi;
 
 // $(document).ready(function () {
 $(function () {
-    datatableApi = $("#mealdatatable").DataTable({
+    datatableApi = $("#datatable").DataTable({
         "paging": false,
         "info": true,
         "columns": [
             {
-                "data": "date"
+                "data": "dateTime"
             },
             {
                 "data": "description"

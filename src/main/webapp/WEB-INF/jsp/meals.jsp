@@ -30,12 +30,12 @@
                 <dt><spring:message code="meal.endTime"/>:</dt>
                 <dd><input type="time" name="endTime" value="${param.endTime}"></dd>
             </dl>
-            <a class="btn btn-primary" onclick="filter()">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                <spring:message code="meal.filter"/>
-            </a>
         </form>
-        <table class="table table-striped display" id="mealdatatable">
+        <a class="btn btn-primary" onclick="filter()">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <spring:message code="meal.filter"/>
+        </a>
+        <table class="table table-striped display" id="datatable">
             <thead>
             <tr>
                 <th><spring:message code="meal.dateTime"/></th>
@@ -57,16 +57,70 @@
                     <td>${meal.description}</td>
                     <td>${meal.calories}</td>
                     <td><a href="meals/update?id=${meal.id}"><spring:message code="common.update"/></a></td>
-                    <td><a href="meals/delete?id=${meal.id}"><spring:message code="common.delete"/></a></td>
+                    <td><a class="delete" onclick="deleteRow(${meal.id})"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
                 </tr>
             </c:forEach>
         </table>
+        <hr>
         <a class="btn btn-primary" onclick="add()">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             <spring:message code="meal.add"/>
         </a>
     </div>
 </div>
+
+<div class="modal fade" id="editRow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title"><spring:message code="meal.add"/></h2>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="detailsForm">
+                    <input type="hidden" id="id" name="id">
+                    <div class="form-group">
+                        <label for="dateTime" class="control-label col-xs-3"><spring:message
+                                code="meal.dateTime"/></label>
+
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="dateTime" name="dateTime"
+                                   placeholder="<spring:message code="meal.dateTime"/>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description" class="control-label col-xs-3"><spring:message
+                                code="meal.description"/></label>
+
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="description" name="description"
+                                   placeholder="<spring:message code="meal.description"/>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calories" class="control-label col-xs-3"><spring:message
+                                code="meal.calories"/></label>
+
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="calories" name="calories"
+                                   placeholder="<spring:message code="meal.calories"/>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-9">
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>

@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalDate;
 
 
 @RestController
@@ -44,7 +43,7 @@ public class MealAjaxController extends AbstractMealController {
     @PostMapping
     public void createOrUpdate(@RequestParam("id") Integer id,
                                @RequestParam("description") String description,
-                               @RequestParam("date") String date,
+                               @RequestParam("dateTime") String date,
                                @RequestParam("calories") Integer calories) {
         LocalDateTime localDateTime = LocalDateTime.parse(date);
         Meal meal = new Meal(id,localDateTime, description,calories);
