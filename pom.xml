@@ -17,7 +17,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <tomcat.version>8.5.24</tomcat.version>
-        <spring.version>5.0.1.RELEASE</spring.version>
+        <spring.version>5.0.2.RELEASE</spring.version>
         <spring-data-jpa.version>2.0.2.RELEASE</spring-data-jpa.version>
         <spring-security.version>5.0.0.RELEASE</spring-security.version>
         <jackson-json.version>2.9.3</jackson-json.version>
@@ -35,7 +35,7 @@
 
         <!-- Hibernate -->
         <hibernate.version>5.2.12.Final</hibernate.version>
-        <hibernate-validator.version>6.0.5.Final</hibernate-validator.version>
+        <hibernate-validator.version>6.0.7.Final</hibernate-validator.version>
         <javax-el.version>3.0.1-b08</javax-el.version>
 
         <!--Tools-->
