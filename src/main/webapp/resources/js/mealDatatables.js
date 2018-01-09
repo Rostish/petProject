@@ -10,6 +10,11 @@ function updateTable() {
     });
 }
 
+function clearFilter() {
+    $("#filter")[0].reset();
+    $.get(ajaxUrl, updateTableByData);
+}
+
 $(function () {
     datatableApi = $("#datatable").DataTable({
         "paging": false,
