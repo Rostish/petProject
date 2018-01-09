@@ -10,6 +10,10 @@
     padding-bottom: 15px;
 }
 
+.disabled {
+    opacity: 0.3;
+}
+
 .glyphicon {
     cursor: pointer;
 }
