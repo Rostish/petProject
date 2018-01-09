@@ -3,8 +3,9 @@ package ru.javawebinar.topjava.web.user;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import ru.javawebinar.topjava.TestUtil;
-import ru.javawebinar.topjava.model.Role;
 import ru.javawebinar.topjava.model.User;
+import ru.javawebinar.topjava.to.UserTo;
+import ru.javawebinar.topjava.util.UserUtil;
 import ru.javawebinar.topjava.web.AbstractControllerTest;
 import ru.javawebinar.topjava.web.json.JsonUtil;
 
@@ -36,12 +37,13 @@ public class ProfileRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
-        User updated = new User(USER_ID, "newName", "newemail@ya.ru", "newPassword", Role.ROLE_USER);
+        UserTo updatedTo = new UserTo(null, "newName", "newemail@ya.ru", "newPassword");
+
         mockMvc.perform(put(REST_URL).contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(updated)))
+                .content(JsonUtil.writeValue(updatedTo)))
                 .andDo(print())
                 .andExpect(status().isOk());
 
-        assertMatch(new User(userService.getByEmail("newemail@ya.ru")), updated);
+        assertMatch(userService.getByEmail("newemail@ya.ru"), UserUtil.updateFromTo(new User(USER), updatedTo));
     }
 }

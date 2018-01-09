@@ -4,8 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 
-public class MealWithExceed {
-    private final Integer id;
+public class MealWithExceed extends BaseTo {
 
     private final LocalDateTime dateTime;
 
@@ -16,15 +15,11 @@ public class MealWithExceed {
     private final boolean exceed;
 
     public MealWithExceed(Integer id, LocalDateTime dateTime, String description, int calories, boolean exceed) {
-        this.id = id;
+        super(id);
         this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;
         this.exceed = exceed;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public LocalDateTime getDateTime() {
