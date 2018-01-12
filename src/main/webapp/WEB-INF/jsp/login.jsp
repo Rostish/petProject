@@ -81,7 +81,7 @@
         Весь REST интерфейс покрывается JUnit тестами, используя Spring MVC Test и Spring Security Test.
     </div>
 </div>
-<jsp:include page="fragments/footer.jsp"/>
+
 <script type="text/javascript">
     function setCredentials(username, password) {
         $('input[name="username"]').val(username);

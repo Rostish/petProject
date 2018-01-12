@@ -81,7 +81,7 @@
         </div>
     </div>
 </div>
-<jsp:include page="fragments/footer.jsp"/>
+
 </body>
 <script type="text/javascript">
     var i18n = [];
