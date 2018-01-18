@@ -20,16 +20,10 @@ function updateRow(id) {
     $("#modalTitle").html(i18n["editTitle"]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
-            form.find("input[name='" + key + "']").val(
-                key === "dateTime" ? formatDate(value) : value
-            );
+            form.find("input[name='" + key + "']").val(value);
         });
         $('#editRow').modal();
     });
-}
-
-function formatDate(date) {
-    return date.replace('T', ' ').substr(0, 16);
 }
 
 function deleteRow(id) {
@@ -79,8 +73,10 @@ function successNoty(key) {
 
 function failNoty(jqXHR) {
     closeNoty();
+    // https://stackoverflow.com/questions/48229776
+    var responseJSON = JSON.parse(jqXHR.responseText);
     failedNote = new Noty({
-        text: "<span class='glyphicon glyphicon-exclamation-sign'></span> &nbsp;" + i18n["common.errorStatus"] + ": " + jqXHR.status + (jqXHR.responseJSON ? "<br>" + jqXHR.responseJSON : ""),
+        text: "<span class='glyphicon glyphicon-exclamation-sign'></span> &nbsp;" + i18n["common.errorStatus"] + ": " + jqXHR.status + (responseJSON ? "<br>" + responseJSON : ""),
         type: "error",
         layout: "bottomRight"
     }).show();
