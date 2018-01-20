@@ -11,7 +11,7 @@ import static java.util.Objects.requireNonNull;
 public class AuthorizedUser extends org.springframework.security.core.userdetails.User {
     private static final long serialVersionUID = 1L;
 
-    private final UserTo userTo;
+    private UserTo userTo;
 
     public AuthorizedUser(User user) {
         super(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, user.getRoles());
@@ -39,6 +39,10 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
 
     public static int getCaloriesPerDay() {
         return get().userTo.getCaloriesPerDay();
+    }
+
+    public void update(UserTo newTo) {
+        userTo = newTo;
     }
 
     public UserTo getUserTo() {
