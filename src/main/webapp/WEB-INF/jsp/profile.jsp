@@ -12,9 +12,9 @@
 <div class="jumbotron">
     <div class="container">
         <%--@elvariable id="userTo" type="ru.javawebinar.topjava.to.UserTo"--%>
-        <h2>${userTo.name} <spring:message code="app.profile"/></h2>
+        <h2>${userTo.name} <spring:message code="${register ? 'app.register' : 'app.profile'}"/></h2>
 
-        <form:form modelAttribute="userTo" class="form-horizontal" method="post" action="profile"
+        <form:form modelAttribute="userTo" class="form-horizontal" method="post" action="${register ? 'register' : 'profile'}"
                    charset="utf-8" accept-charset="UTF-8">
 
             <spring:message code="user.name" var="userName"/>
