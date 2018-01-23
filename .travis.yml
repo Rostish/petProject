@@ -17,6 +17,10 @@ branches:
   only:
   - master
 
+#https://docs.travis-ci.com/user/environment-variables#Default-Environment-Variables
+env:
+- TOPJAVA_ROOT=$TRAVIS_BUILD_DIR
+
 # https://docs.travis-ci.com/user/notifications#Configuring-email-notifications
 #notifications:
 #  email: false
