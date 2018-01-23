@@ -15,6 +15,8 @@ import ru.javawebinar.topjava.web.user.AbstractUserController;
 
 import javax.validation.Valid;
 
+import static ru.javawebinar.topjava.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL;
+
 @Controller
 public class RootController extends AbstractUserController {
 
