@@ -18,9 +18,8 @@ public abstract class AbstractBaseEntity implements HasId {
     //    @Column(name = "id", unique = true, nullable = false, columnDefinition = "integer default nextval('global_seq')")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
 
-//    PROPERTY access for id due to bug: https://hibernate.atlassian.net/browse/HHH-3718
-//    Fixed at last?
-//    @Access(value = AccessType.PROPERTY)
+//  Fixed https://hibernate.atlassian.net/browse/HHH-3718
+//  See also proxy loading when fix https://hibernate.atlassian.net/browse/HHH-12034
     protected Integer id;
 
     protected AbstractBaseEntity() {
