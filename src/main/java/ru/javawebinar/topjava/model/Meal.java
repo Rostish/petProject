@@ -69,7 +69,7 @@ public class Meal extends AbstractBaseEntity {
     public LocalDateTime getDateTime() {
         return dateTime;
     }
-
+    
     public String getDescription() {
         return description;
     }
