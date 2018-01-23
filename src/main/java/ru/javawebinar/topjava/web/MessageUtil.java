@@ -5,6 +5,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
+import ru.javawebinar.topjava.util.exception.ApplicationException;
 
 import java.util.Locale;
 
@@ -18,12 +19,16 @@ public class MessageUtil {
         this.messageSource = messageSource;
     }
 
-    public String getMessage(String code, Locale locale) {
-        return messageSource.getMessage(code, null, locale);
+    public String getMessage(String code, Locale locale, String... args) {
+        return messageSource.getMessage(code, args, locale);
     }
 
-    public String getMessage(String code) {
-        return getMessage(code, LocaleContextHolder.getLocale());
+    public String getMessage(String code, String... args) {
+        return getMessage(code, LocaleContextHolder.getLocale(), args);
+    }
+
+    public String getMessage(ApplicationException appEx) {
+        return getMessage(appEx.getMsgCode(), appEx.getArgs());
     }
 
     public String getMessage(MessageSourceResolvable resolvable) {
